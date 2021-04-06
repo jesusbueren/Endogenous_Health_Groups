@@ -30,7 +30,7 @@ In you main path you need to create a folder named "Data" where you include the 
 
 main.f90 is the main script of the code. It first calls charge_data.f90 which loads the csv files from Data Preparation. Then it call for the set of initial conditions using initial_conditions.f90 and finally runs the main estimation exercise full_posterior.f90
 
-#### 2.1 Initial Conditions
+#### 2.1. Initial Conditions
 
 Initial conditions are obtained in two blocks:
 1. The first block estimates the initial conditions for the probability of I-ADLs in each group.
