@@ -59,8 +59,8 @@ Following the notation of the paper the code squentially:
 ### 3. Health Classification
 
 This program uses the same scripts as the main econometric model but has a different main.f90 script.
-It first loads the posterior distribution of the estimated parameters and the probability of belonging to each health group conditional on age, education, and gender using load_high_density.f90.
-Then, runs the Hamilton filter using likelihood_all.f90 and filtration.f90.
-Finally, the code generates a .txt file with an individual identifier and the filtered probabilities.
+1. It first loads the posterior distribution of the estimated parameters and the probability of belonging to each health group conditional on age, education, and gender using load_high_density.f90.
+2. Then, runs the Hamilton filter using likelihood_all.f90 and filtration.f90.
+3. Finally, the code generates a .txt file with an individual identifier and the filtered probabilities.
 
 
