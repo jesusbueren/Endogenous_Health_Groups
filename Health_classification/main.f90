@@ -37,18 +37,7 @@ program main
     
     open(unit=9,file=path//path_s2//'naive_pr_'//s_c//'.txt',status='replace')
     do i_l=1,indv; do g_l=1,generations;
-            !With two clusters uncomment the following line, comment otherwise
-            !write(9,'(I5,I3,F6.3,F6.3,I3)'), i_l,g_l,filtered_states(i_l,1,g_l),filtered_states(i_l,2,g_l),maxloc(filtered_states(i_l,:,g_l))
-            
-            !With three clusters uncomment the following line, comment otherwise
-            !write(9,'(I5,I3,F6.3,F6.3,F6.3,I3)'), i_l,g_l,filtered_states(i_l,1,g_l),filtered_states(i_l,2,g_l),filtered_states(i_l,3,g_l),maxloc(filtered_states(i_l,:,g_l))
-            
-            !With four clusters uncomment the following line, comment otherwise
-            write(9,'(I5,I3,F6.3,F6.3,F6.3,F6.3,I3)'), i_l,g_l,filtered_states(i_l,1,g_l),filtered_states(i_l,2,g_l),filtered_states(i_l,3,g_l),filtered_states(i_l,4,g_l),maxloc(filtered_states(i_l,:,g_l))
-            
-            !With five clusters uncomment the following line, comment otherwise
-            !write(9,'(I5,I3,F6.3,F6.3,F6.3,F6.3,F6.3,I3)'), i_l,g_l,filtered_states(i_l,1,g_l),filtered_states(i_l,2,g_l),filtered_states(i_l,3,g_l),filtered_states(i_l,4,g_l),filtered_states(i_l,5,g_l),maxloc(filtered_states(i_l,:,g_l))
-        end if
+        write(9,'(I5,I3,<clusters>F6.3,I3)'), i_l,g_l,filtered_states(i_l,:,g_l),maxloc(filtered_states(i_l,:,g_l))
     end do;end do
     close(9)
 
