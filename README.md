@@ -50,5 +50,5 @@ As explained in the paper the econometric model is estimated using a metropolis 
 
 Following the notation of the paper the code computes:
 
-1. p(h<sub>i,0</sub><sup>(m)</sup> | &beta<sup>(m-1)</sup>,&mu<sup>(m-1)</sup>,*X* )
+1. p(h<sub>i,0</sub><sup>(m)</sup> | β<sup>(m-1)</sup>,&mu<sup>(m-1)</sup>,*X* )
 
