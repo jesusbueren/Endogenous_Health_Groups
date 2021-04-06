@@ -44,3 +44,5 @@ This first step is done by estimating a mixture model by pooling all individuals
 
 The second step of the initial conditions is estimated taking as observed the previously assigned health groups. We thus perform a Bayesian estimation of a multinomial logit model using a Metropolis algorithm. In order to speed up the mixing in the proposal we make use of the adaptive metropolis algorithm proposed by Haario et al. (2001). We save the mean of the posterior distribution and the variance covariance matrix of the proposal. 
 
+#### 2.2. Main Estimation
+
