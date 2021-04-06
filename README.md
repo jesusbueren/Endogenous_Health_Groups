@@ -6,7 +6,7 @@ The replication material is divided in three blocks:
 1. **Estimation Program**: reads the data from the previous step and estimates the econometric model parameters.
 1. **Health Classification**: from the econometric model parameter, it classifies individuals into health groups.
 
-# Data Preparation
+### Data Preparation
 
 This folder contains STATA do-file. This do file reads the data from the HRS rand contributed files, cleans the data, and produces a series of csv files:
 1. data_all.csv has individual level information on I-ADLs for all the interviews.
