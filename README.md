@@ -50,7 +50,7 @@ As explained in the paper the econometric model is estimated using a metropolis 
 
 Following the notation of the paper the code squentially:
 
-1. Runs the Hamilton filter using filtration.f90 to obtain p(h_{i,t}|β<sup>(m-1)</sup>,μ<sup>(m-1)</sup>,**X**)
+1. Runs the Hamilton filter using filtration.f90 to obtain p(h<sub>i,t</sub>|β<sup>(m-1)</sup>,μ<sup>(m-1)</sup>,**X**)
 1. Using the output from the Hamilton filter, runs the Hamilton smoother and Kim smoother to obtain p(h<sub>i,0</sub><sup>(m)</sup>|β<sup>(m-1)</sup>,μ<sup>(m-1)</sup>,**X** ) and p(**h**<sub>i</sub><sup>(m)</sup>|β<sup>(m-1)</sup>,μ<sup>(m-1)</sup>,**X**,**H**<sub>0</sub><sup>(m-1)</sup> ) using smoothing.f90
 1. Samples transitions and I-ADls parameters using an adaptive metropolis algorithm
 1. Accepts/Rejects the new proposal
