@@ -20,7 +20,7 @@ Before you run it, you need to change the directory in line 2 of the do file
 
 This folder contains a set Fortran 90 files.
 
-global_var.f90: includes all the set of global variables. In this file, you need to change the location and length of the string of the location of the different files:
+global_var.f90: includes all the set of global variables. In this file, you need to set the number of clusters (clusters=x) and change the location and length of the string of the location of the different files:
 
 The concatenation of the strings path and path_s_ini is where the set of initial conditions will be stored.
 
@@ -28,7 +28,19 @@ The concatenation of the strings path and path_s_fin is where the set of the pos
 
 In you main path you need to create a folder named "Data" where you include the csv files from Data Preparation.
 
-main.f90 is the main script of the code.
+main.f90 is the main script of the code. It first calls charge_data.f90 which loads the csv files from Data Preparation. Then it call for the set of initial conditions using initial_conditions.f90 and finally runs the main estimation exercise full_posterior.f90
 
-It first calls charge_data.f90 which loads the csv files from Data Preparation. Then it call for the set of initial conditions using initial_conditions.f90 and finally runs the main estimation exercise full_posterior.f90
+#### Initial Conditions
+
+Initial conditions are obtained in two blocks:
+1. The first block estimates the initial conditions for the probability of I-ADLs in each group.
+2. The second block estimatates the initial conditions for the parameters drinving the transition probabilities.
+
+##### Initial Conditions for the Probability of I-ADLs in Each Group
+
+This first step is done by estimating a mixture model by pooling all individuals with available information on I-ADLs. This initial model is estimated using an EM algorithm ignoring all the time series information from transitions. This step produces the probability that each interviewed individual belongs to each health group. Given these probabilities, we sample an individual health group at random.  A detailed exposition on how to estimate this class of models can be found in section 9.3.3 of "Pattern Recognition and Machine Learning" by Christopher M. Bishop.  
+
+##### Initial Conditions for Transition Probabilities
+
+The second step of the initial conditions is estimated taking as observed the previously assigned health groups. We thus perform a Bayesian estimation of a multinomial logit model using a Metropolis algorithm. In order to speed up the mixing in the proposal we make use of the adaptive metropolis algorithm proposed by Haario et al. (2001). We save the mean of the posterior distribution and the variance covariance matrix of the proposal. 
 
