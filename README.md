@@ -48,7 +48,11 @@ The second step of the initial conditions is estimated taking as observed the pr
 
 As explained in the paper the econometric model is estimated using a metropolis within Gibbs algorithm. Once the initial conditions have been estimated, the economtric model is estimated by calling full_posterior.f90 in the main script.
 
-Following the notation of the paper the code computes:
+Following the notation of the paper the code squentially:
 
-1. p(h<sub>i,0</sub><sup>(m)</sup> | β<sup>(m-1)</sup>,&mu<sup>(m-1)</sup>,*X* )
+1. Runs the Hamilton filter using filtration.f90 to obtain p(h_{i,t}|β<sup>(m-1)</sup>,μ<sup>(m-1)</sup>,**X**)
+1. Using the output from the Hamilton filter, runs the Hamilton smoother and Kim smoother to obtain p(h<sub>i,0</sub><sup>(m)</sup>|β<sup>(m-1)</sup>,μ<sup>(m-1)</sup>,**X** ) and p(**h**<sub>i</sub><sup>(m)</sup>|β<sup>(m-1)</sup>,μ<sup>(m-1)</sup>,**X**,**H**<sub>0</sub><sup>(m-1)</sup> ) using smoothing.f90
+1. Samples transitions and I-ADls parameters using an adaptive metropolis algorithm
+1. Accepts/Rejects the new proposal
+1. Saves the current proposal using save_results.f90
 
