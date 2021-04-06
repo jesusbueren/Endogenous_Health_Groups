@@ -6,7 +6,7 @@ The replication material is divided in three blocks:
 1. **Estimation Program**: reads the data from the previous step and estimates the econometric model parameters.
 1. **Health Classification**: from the econometric model parameter, it classifies individuals into health groups.
 
-### Data Preparation
+### 1. Data Preparation
 
 This folder contains a STATA do-file. This do file reads the data from the HRS rand contributed files, cleans the data, and produces a series of csv files:
 1. data_all.csv has individual level information on I-ADLs for all the interviews.
@@ -16,7 +16,7 @@ This folder contains a STATA do-file. This do file reads the data from the HRS r
 
 Before you run it, you need to change the directory in line 2 of the do file
 
-### Estimation Program
+### 2. Estimation Program
 
 This folder contains a set Fortran 90 files.
 
@@ -30,7 +30,7 @@ In you main path you need to create a folder named "Data" where you include the 
 
 main.f90 is the main script of the code. It first calls charge_data.f90 which loads the csv files from Data Preparation. Then it call for the set of initial conditions using initial_conditions.f90 and finally runs the main estimation exercise full_posterior.f90
 
-#### Initial Conditions
+#### 2.1 Initial Conditions
 
 Initial conditions are obtained in two blocks:
 1. The first block estimates the initial conditions for the probability of I-ADLs in each group.
