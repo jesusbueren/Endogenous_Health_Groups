@@ -4,7 +4,7 @@ In this repository, I explain the codes for replicating Endogenous Health Groups
 The replication material is divided in three blocks:
 1. **Data Preparation**: from the HRS to the files to be read by the estimation program.
 1. **Estimation Program**: reads the data from the previous step and estimates the econometric model parameters.
-1. **Health Classification**: from the econometric model parameter, it classifies individuals into health groups.
+1. **Health Classification**: using the econometric model parameters, it classifies individuals into health groups.
 
 ### 1. Data Preparation
 
@@ -26,7 +26,7 @@ The concatenation of the strings path and path_s_ini is where the set of initial
 
 The concatenation of the strings path and path_s_fin is where the set of the posterior distribution of the estimated parameters will be stored.
 
-In you main path you need to create a folder named "Data" where you include the csv files from Data Preparation.
+In your main path you need to create a folder named "Data" where you include the csv files from Data Preparation.
 
 main.f90 is the main script of the code. It first calls charge_data.f90 which loads the csv files from Data Preparation. Then it call for the set of initial conditions using initial_conditions.f90 and finally runs the main estimation exercise full_posterior.f90
 
@@ -34,7 +34,7 @@ main.f90 is the main script of the code. It first calls charge_data.f90 which lo
 
 Initial conditions are obtained in two blocks:
 1. The first block estimates the initial conditions for the probability of I-ADLs in each group.
-2. The second block estimatates the initial conditions for the parameters drinving the transition probabilities.
+2. The second block estimates the initial conditions for the parameters drinving the transition probabilities.
 
 ##### Initial Conditions for the Probability of I-ADLs in Each Group
 
@@ -52,13 +52,12 @@ Following the notation of the paper the code squentially:
 
 1. Runs the Hamilton filter using filtration.f90 to obtain p(h<sub>i,t</sub>|β<sup>(m-1)</sup>,μ<sup>(m-1)</sup>,**X**)
 1. Using the output from the Hamilton filter, runs the Hamilton smoother and Kim smoother to obtain: <br> p(h<sub>i,0</sub><sup>(m)</sup>|β<sup>(m-1)</sup>,μ<sup>(m-1)</sup>,**X** ) and p(**h**<sub>i</sub><sup>(m)</sup>|β<sup>(m-1)</sup>,μ<sup>(m-1)</sup>,**X**,**H**<sub>0</sub><sup>(m-1)</sup> ) using smoothing.f90
-3. Samples transitions and I-ADls parameters using an adaptive metropolis algorithm
+3. Samples transitions and I-ADLs parameters using an adaptive metropolis algorithm
 4. Accepts/Rejects the new proposal
 5. Saves the current proposal using save_results.f90
 
 ### 3. Health Classification
 
-This program uses the same scripts as the main econometric model but has a different main.f90 script.
 1. It first loads the posterior distribution of the estimated parameters and the probability of belonging to each health group conditional on age, education, and gender using load_high_density.f90.
 2. Then, runs the Hamilton filter using likelihood_all.f90 and filtration.f90.
 3. Finally, the code generates a .txt file with an individual identifier and the filtered probabilities.
