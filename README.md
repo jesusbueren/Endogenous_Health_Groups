@@ -46,3 +46,9 @@ The second step of the initial conditions is estimated taking as observed the pr
 
 #### 2.2. Main Estimation
 
+As explained in the paper the econometric model is estimated using a metropolis within Gibbs algorithm. Once the initial conditions have been estimated, the economtric model is estimated by calling full_posterior.f90 in the main script.
+
+Following the notation of the paper the code computes:
+
+1. p(h<sub>i,0</sub><sup>(m)</sup> | bb<sup>(m-1)</sup>,mu<sup>(m-1)</sup>,*X* )
+
